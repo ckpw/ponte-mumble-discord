@@ -180,9 +180,7 @@ async def asyncc_mensagem(mensagem):
 
 
 async def async_mensagem(mensagem):
-    print("b")
     try:
-        print("a")
         # obtém o canal de texto pelo ID
         canal_texto = client.get_channel(canal)
         print(mensagem)
@@ -194,7 +192,6 @@ async def async_mensagem(mensagem):
         converter = html2text.HTML2Text()
         converter.body_width = 0
         if img_tag is None:
-            print("cu")
             # envia a mensagem sem as tags HTML
             mensagem_sem_tags = converter.handle(str(mensagem_html))
             try:
@@ -203,7 +200,6 @@ async def async_mensagem(mensagem):
                 print(e)
         else:
             try:
-                print("cuz")
                 # obtém a string de base64 da mensagem
                 base64_str = unquote(img_tag['src'].split(',')[1])
                 print(base64_str)
@@ -222,7 +218,6 @@ async def async_mensagem(mensagem):
                 mensagem_sem_tags = converter.handle(str(mensagem_html))
                 try:
                     result = await canal_texto.send(mensagem_sem_tags, file=file)
-                    print("a")
                 except Exception as e:
                     print(e)
             except Exception as e:
